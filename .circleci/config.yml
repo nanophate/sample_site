@@ -18,9 +18,12 @@ jobs:
   build:
     docker:
       - image: docker:stable
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - setup_remote_docker:
+      - setup_remote_docker
       - run: docker build .
 workflows:
   test_build:
