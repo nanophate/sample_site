@@ -1,4 +1,3 @@
 # syntax=docker/dockerfile:1
-FROM debian:10
-RUN ls -la
-RUn ls -d
+FROM debian:11
+RUN ls -d
