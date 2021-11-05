@@ -10,13 +10,22 @@ jobs:
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
-    parallelism: 4
     steps:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
       - profiling/network
+  build:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker:
+      - run: docker build .
 workflows:
-  test_deploy:
+  test_build:
     jobs:
       - test
+      - build:
+          requires:
+            - test
