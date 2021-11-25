@@ -50,6 +50,6 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - develop
     jobs:
       - test
