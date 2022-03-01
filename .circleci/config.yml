@@ -23,8 +23,8 @@ jobs:
       - ruby/install-deps
       - ruby/rspec-test
       - run: |
-          if [ $CIRCLE_NODE_INDEX == 0 ] then
-             exit 1
+          if [ $CIRCLE_NODE_INDEX == 0 ]; then
+            exit 1
           fi
 workflows:
   test_build:
