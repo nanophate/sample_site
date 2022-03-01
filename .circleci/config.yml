@@ -17,10 +17,15 @@ jobs:
   build:
     machine:
       image: ubuntu-2004:202010-01
+      parallelism: 3
     steps:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
+      - run: |
+          if [ $CIRCLE_NODE_INDEX == 0 ] then
+             exit 1
+          fi
 workflows:
   test_build:
     jobs:
