@@ -17,7 +17,7 @@ jobs:
   build:
     machine:
       image: ubuntu-2004:202010-01
-      parallelism: 3
+    parallelism: 3
     steps:
       - checkout
       - ruby/install-deps
