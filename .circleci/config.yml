@@ -25,6 +25,7 @@ jobs:
       - run: |
           if [ $CIRCLE_NODE_INDEX == 0 ]; then
             exit 1
+            echo "aa"
           fi
 workflows:
   test_build:
