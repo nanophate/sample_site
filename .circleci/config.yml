@@ -14,7 +14,7 @@ jobs:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
-      - run: ls -la /vendor/bundle
+      - run: ls -l vendor/bundle/ruby/2.7.0/gems/
       - persist_to_workspace:
           root: .
           paths:
