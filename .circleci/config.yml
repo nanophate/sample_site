@@ -49,7 +49,7 @@ jobs:
 workflows:
   test_build:
     jobs:
-      - test
+      - test:
           context:
             - slack
       - heroku/deploy-via-git:
