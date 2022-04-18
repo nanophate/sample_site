@@ -17,7 +17,7 @@ jobs:
       - ruby/install-deps
       - ruby/rspec-test
       - slack/notify:
-          channel: monitoring
+          channel: tweets
           event: pass
           custom: |
             {
@@ -32,7 +32,7 @@ jobs:
               ]
             }
       - slack/notify:
-          channel: monitoring
+          channel: tweets
           event: fail
           custom: |
             {
