@@ -1,5 +1,5 @@
 name: Rerun Job
-on: [push]
+on: [pull_request]
 
 jobs: 
   rerun-test: 
