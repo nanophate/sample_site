@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.1
   heroku: circleci/heroku@1.2.6
+  slack: circleci/slack@4.9.3
 jobs:
   test:
     docker:
@@ -14,10 +15,14 @@ jobs:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
+      - slack/notify:
+          channel: tweets
 workflows:
   test_build:
     jobs:
-      - test
+      - test:
+          context:
+            - slack
       - heroku/deploy-via-git:
           requires:
             - test
