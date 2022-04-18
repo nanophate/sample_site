@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.1
   heroku: circleci/heroku@1.2.6
-  git-shallow-clone: guitarrapc/git-shallow-clone@2.0.3
   slack: circleci/slack@4.8.3
 jobs:
   test:
