@@ -3,6 +3,8 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.1
   heroku: circleci/heroku@1.2.6
+  git-shallow-clone: guitarrapc/git-shallow-clone@2.0.3
+  slack: circleci/slack@4.8.3
 jobs:
   test:
     docker:
@@ -11,13 +13,45 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout
+      - git-shallow-clone/checkout
       - ruby/install-deps
       - ruby/rspec-test
+      - slack/notify:
+          channel: monitoring
+          event: pass
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "All Green"
+                  }
+                }
+              ]
+            }
+      - slack/notify:
+          channel: monitoring
+          event: fail
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "All Red :ohnooo:"
+                  }
+                }
+              ]
+            }
 workflows:
   test_build:
     jobs:
       - test
+          context:
+            - slack
       - heroku/deploy-via-git:
           requires:
             - test
