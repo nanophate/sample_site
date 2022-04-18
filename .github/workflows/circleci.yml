@@ -5,7 +5,7 @@ jobs:
   rerun-test: 
     runs-on: ubuntu-latest 
     steps: 
-      - name: rerun CircleCI
+      - name: re-run CircleCI
         run: |
           curl -u $CIRCLE_API_USER_TOKEN: \
           -d "build_parameters[CIRCLE_JOB]=test" \
