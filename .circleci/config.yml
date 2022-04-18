@@ -18,33 +18,9 @@ jobs:
       - slack/notify:
           channel: tweets
           event: pass
-          custom: |
-            {
-               "blocks":[
-                  {
-                     "type":"section",
-                     "text":{
-                        "type":"mrkdwn",
-                        "text":"All Green 1"
-                     }
-                  }
-               ]
-            }
       - slack/notify:
           channel: tweets
           event: fail
-          custom: |
-            {
-              "blocks":[
-                  {
-                    "type":"section",
-                    "text":{
-                        "type":"mrkdwn",
-                        "text":"All Red :ohnooo:"
-                    }
-                  }
-              ]
-            }
 workflows:
   test_build:
     jobs:
