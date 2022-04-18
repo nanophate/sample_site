@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.1
   heroku: circleci/heroku@1.2.6
-  slack: circleci/slack@4.8.3
+  slack: circleci/slack@4.9.3
 jobs:
   test:
     docker:
@@ -17,10 +17,6 @@ jobs:
       - ruby/rspec-test
       - slack/notify:
           channel: tweets
-          event: pass
-      - slack/notify:
-          channel: tweets
-          event: fail
 workflows:
   test_build:
     jobs:
