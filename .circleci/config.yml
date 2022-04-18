@@ -35,16 +35,16 @@ jobs:
           event: fail
           custom: |
             {
-               "blocks":[
+              "blocks":[
                   {
-                     "type":"section",
-                     "text":{
+                    "type":"section",
+                    "text":{
                         "type":"mrkdwn",
                         "text":"All Red :ohnooo:"
-                     }
+                    }
                   }
-               ]
-}
+              ]
+            }
 workflows:
   test_build:
     jobs:
