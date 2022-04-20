@@ -4,7 +4,7 @@ orbs:
   ruby: circleci/ruby@1.1.1
   heroku: circleci/heroku@1.2.6
 jobs:
-  test:
+  prep:
     docker:
       - image: circleci/ruby:2.7.4-node-browsers
         auth:
@@ -12,6 +12,21 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
+      - ruby/install-deps
+      - ruby/rspec-test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./
+  test:
+    docker:
+      - image: circleci/ruby:2.7.4-node-browsers
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - attach_workspace:
+          at: ./
       - ruby/install-deps
       - ruby/rspec-test
       - persist_to_workspace:
@@ -52,7 +67,10 @@ jobs:
 workflows:
   test_build:
     jobs:
-      - test
+      - prep
+      - test:
+          requires:
+            - prep      
       - dep:
           requires:
             - test
