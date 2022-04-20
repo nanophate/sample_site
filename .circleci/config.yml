@@ -14,10 +14,56 @@ jobs:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./
+  dep:
+    docker:
+      - image: circleci/ruby:2.7.4-node-browsers
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: echo "Some line" > dep.txt
+  sha:
+    docker:
+      - image: circleci/ruby:2.7.4-node-browsers
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: echo "Some line" > sha.txt
+  tha:
+    docker:
+      - image: circleci/ruby:2.7.4-node-browsers
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: echo "Some line" > tha.txt
+      - run: ls
 workflows:
   test_build:
     jobs:
       - test
+      - dep:
+          requires:
+            - test
+      - sha:
+          requires:
+            - test
+      - tha:
+          requires:
+            - test
+            - dep
+            - sha
       - heroku/deploy-via-git:
           requires:
             - test
