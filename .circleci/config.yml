@@ -14,7 +14,7 @@ jobs:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
-      - run: echo "hallo"
+      - run: echo "moeeee"
 workflows:
   test_build:
     jobs:
