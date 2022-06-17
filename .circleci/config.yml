@@ -13,6 +13,14 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
+      - run:
+          command: |
+            while true; do
+              sleep 5
+              wget localhost/wd/hub/status
+              echo "======"
+            done
+          background: true
       - ruby/rspec-test
 workflows:
   test_build:
