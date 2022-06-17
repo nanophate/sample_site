@@ -17,7 +17,7 @@ jobs:
           command: |
             while true; do
               sleep 1
-              wget localhost:4444/wd/hub/status
+              wget localhost:9515/wd/hub/status
               echo "======"
             done
           background: true
