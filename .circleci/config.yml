@@ -7,12 +7,17 @@ jobs:
   test:
     docker:
       - image: circleci/ruby:2.7.4-node-browsers
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - ruby/install-deps
+      - run:
+          command: |
+            while true; do
+              sleep 1
+              wget localhost:9515/wd/hub/status
+              echo "======"
+            done
+          background: true
       - ruby/rspec-test
 workflows:
   test_build:
