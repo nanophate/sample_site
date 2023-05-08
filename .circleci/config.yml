@@ -11,6 +11,8 @@ jobs:
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
+      - run: circleci tests glob 'spec/**/*_spec.rb' 'vendor/bundle/**/*_spec.rb'
+      - run: circleci tests glob "spec/**/*_spec.rb" "vendor/bundle/**/*_spec.rb"
 workflows:
   test_build:
     jobs:
