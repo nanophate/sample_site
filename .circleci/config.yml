@@ -9,6 +9,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.7.4-node-browsers
     steps:
+      - run: curl http://checkip.amazonaws.com/
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
