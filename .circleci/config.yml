@@ -4,12 +4,16 @@ orbs:
   ruby: circleci/ruby@1.1.1
 jobs:
   test:
+    circleci_ip_ranges: 
     docker:
       - image: circleci/ruby:2.7.4-node-browsers
     steps:
+      - run: curl http://checkip.amazonaws.com/
       - checkout
       - ruby/install-deps
       - ruby/rspec-test
+      - run: circleci tests glob 'spec/**/*_spec.rb' 'vendor/bundle/**/*_spec.rb'
+      - run: circleci tests glob "spec/**/*_spec.rb" "vendor/bundle/**/*_spec.rb"
 workflows:
   test_build:
     jobs:
