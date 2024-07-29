@@ -7,6 +7,7 @@ jobs:
       - image: circleci/ruby:2.7.4-node-browsers
     steps:
       - checkout
+      - run: circleci tests split --split-by=timings
       - ruby/install-deps
       - ruby/rspec-test
 workflows:
