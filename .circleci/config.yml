@@ -9,6 +9,14 @@ jobs:
       - checkout
       - run: circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings
       - ruby/install-deps
+      - run:
+          command: |
+            while true; do
+              sleep 1
+              wget localhost:9515/wd/hub/status
+              echo "======"
+            done
+          background: true
       - ruby/rspec-test
 workflows:
   test_build:
