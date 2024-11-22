@@ -10,6 +10,7 @@ jobs:
       - run: circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings
       - ruby/install-deps
       - ruby/rspec-test
+      - run: echo "aaa"
 workflows:
   test_build:
     jobs:
