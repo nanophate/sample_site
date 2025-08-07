@@ -13,5 +13,6 @@ jobs:
       - ruby/rspec-test
 workflows:
   test_build:
+    max_auto_reruns: 3
     jobs:
       - test
