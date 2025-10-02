@@ -13,3 +13,5 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
 end
+
+gem "webrick", "~> 1.9"
