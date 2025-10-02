@@ -11,7 +11,28 @@
     <script>
     function swapWelcome() {
       var welcomeMessage = document.getElementById("welcome");
-      welcomeMessage.innerHTML = "Hi, Thank you for touch me!";
+      
+      // Simulate realistic JavaScript timing issues
+      // This mimics heavy DOM manipulation, API calls, or animation delays
+      // that commonly cause flakiness in real applications
+      
+      // Add random delay to simulate:
+      // - Network requests completing at different times
+      // - Heavy computation or DOM manipulation
+      // - Animation/transition timing issues
+      var delay = Math.random() < 0.3 ? Math.random() * 200 : 0;
+      
+      setTimeout(function() {
+        // Simulate occasional JavaScript errors that happen in production
+        // This represents real issues like race conditions, undefined variables, etc.
+        if (Math.random() < 0.05) {
+          // Don't update the DOM - simulates a JS error that prevents execution
+          console.error("Simulated JavaScript error");
+          return;
+        }
+        
+        welcomeMessage.innerHTML = "Hi, Thank you for touch me!";
+      }, delay);
     }
     </script>
   </body>
