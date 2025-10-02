@@ -1,0 +1,15 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@2.5.3
+workflows:
+  cci-agent-setup:
+    jobs:
+      - cci-agent-setup
+jobs:
+  cci-agent-setup:
+    docker:
+      - image: circleci/ruby:2.7.4-node-browsers3
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rspec-test
