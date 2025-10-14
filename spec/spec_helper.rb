@@ -1,6 +1,8 @@
 require 'rspec'
 require 'capybara/rspec'
 require 'selenium-webdriver'
+require 'rack'
+require 'rackup'
 
 Capybara.app = eval("Rack::Builder.new {( " + File.read(File.dirname(__dir__) + '/config.ru') + "\n )}")
 

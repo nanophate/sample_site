@@ -1,6 +1,5 @@
 app = Rack::Builder.app do
   use Rack::Static, urls: '/', root: 'public', index: 'index.html'
-  use Rack::Chunked
   
   # Add realistic server-side flakiness that mimics production issues
   run lambda { |env| 
